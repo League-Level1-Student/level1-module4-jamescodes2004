@@ -34,7 +34,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -54,18 +54,32 @@ frame.setVisible(true);
 		// 2. Give your frame a title
 frame.setTitle("Jeopardy Bois");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-
+createHeader("Jeopary");
 		// 4. Add the header component to the quizPanel
-
+quizPanel.add(createHeader("Jeopary"));
 		// 5. Add the quizPanel to the frame
-
+frame.add(quizPanel);
 		// 6. Use the createButton method to set the value of firstButton
 
 		// 7. Add the firstButton to the quizPanel
-
+firstButton = createButton("200");
+firstButton.addActionListener(this);
+quizPanel.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 
+secondButton = createButton("200");
+secondButton.addActionListener(this);
+thirdButton = createButton("200");
+thirdButton.addActionListener(this);
+fourthButton = createButton("200");
+fourthButton.addActionListener(this);
+fifthButton = createButton("200");
+fifthButton.addActionListener(this);
+quizPanel.add(secondButton);
+quizPanel.add(thirdButton);
+quizPanel.add(fourthButton);
+quizPanel.add(fifthButton);
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
 
@@ -93,14 +107,14 @@ frame.setTitle("Jeopardy Bois");
 	private JButton createButton(String dollarAmount) {
 		
 		// Create a new JButton
-
+JButton button1 = new JButton();
 		// Set the text of the button to the dollarAmount
-
+button1.setText(dollarAmount);
 		// Increment the buttonCount (this should make the layout vertical)
+buttonCount= buttonCount+1;
+// Return your new button instead of the temporary button
 
-		// Return your new button instead of the temporary button
-
-		return new JButton("temporary button");
+		return new JButton("$" + dollarAmount);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -110,8 +124,9 @@ frame.setTitle("Jeopardy Bois");
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
-			// Call the askQuestion() method
+		if (buttonPressed==firstButton) {
+askQuestion("Which sport has the most injuries(besides fighting sports).", "football", 200);
+score=score + 200;}
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
@@ -120,7 +135,18 @@ frame.setTitle("Jeopardy Bois");
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+		if (buttonPressed==secondButton) {
+askQuestion("What is the farthest state from California.", "Hawaii", 400);
+score=score + 400;}
+		if (buttonPressed==thirdButton) {
+askQuestion("Which country (besides USA) was involved in the cold war?", "Soviet Union", 600);
+score=score + 600;}
+		if (buttonPressed==fourthButton) {
+askQuestion("Who was the first vice president.", "John Adams", 800);
+score=score + 800;}
+		if (buttonPressed==fifthButton) {
+askQuestion("What is the farthest country from San Diego.", "Mauritius", 1000);
+score=score + 1000;}
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
