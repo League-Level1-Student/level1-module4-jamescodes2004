@@ -17,7 +17,6 @@ public static void main(String[] args) {
 	new ChuckleClicker().makeButtons();
 }
 void makeButtons(){
-	JOptionPane.showMessageDialog(null, "Make Buttons");
 
 	joke.addActionListener(this);
 

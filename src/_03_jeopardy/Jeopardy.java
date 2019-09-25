@@ -68,13 +68,13 @@ quizPanel.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 
-secondButton = createButton("200");
+secondButton = createButton("400");
 secondButton.addActionListener(this);
-thirdButton = createButton("200");
+thirdButton = createButton("600");
 thirdButton.addActionListener(this);
-fourthButton = createButton("200");
+fourthButton = createButton("800");
 fourthButton.addActionListener(this);
-fifthButton = createButton("200");
+fifthButton = createButton("1000");
 fifthButton.addActionListener(this);
 quizPanel.add(secondButton);
 quizPanel.add(thirdButton);
@@ -126,7 +126,7 @@ buttonCount= buttonCount+1;
 		// If the buttonPressed was the firstButton
 		if (buttonPressed==firstButton) {
 askQuestion("Which sport has the most injuries(besides fighting sports).", "football", 200);
-score=score + 200;}
+}
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
@@ -137,29 +137,32 @@ score=score + 200;}
 		// Clear the text on the button that was pressed (set the button text to nothing)
 		if (buttonPressed==secondButton) {
 askQuestion("What is the farthest state from California.", "Hawaii", 400);
-score=score + 400;}
+}
 		if (buttonPressed==thirdButton) {
 askQuestion("Which country (besides USA) was involved in the cold war?", "Soviet Union", 600);
-score=score + 600;}
+}
 		if (buttonPressed==fourthButton) {
 askQuestion("Who was the first vice president.", "John Adams", 800);
-score=score + 800;}
+}
 		if (buttonPressed==fifthButton) {
 askQuestion("What is the farthest country from San Diego.", "Mauritius", 1000);
-score=score + 1000;}
+}
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
-		
-		// Stop the theme music when they have entered their response. Hint: use the sound variable 
-		
-		// If the answer is correct
+		String answer = JOptionPane.showInputDialog(null,question);
 
+		// Stop the theme music when they have entered their response. Hint: use the sound variable 
+		sound.stop();
+		// If the answer is correct
+if (answer.equalsIgnoreCase(correctAnswer)) {
+	score=score+prizeMoney;
+	JOptionPane.showMessageDialog(null, "You are right!");
+}
 			// Increase the score by the prizeMoney
 
 			// Pop up a message to tell the user they were correct
@@ -167,11 +170,14 @@ score=score + 1000;}
 		// Otherwise
 
 			// Decrement the score by the prizeMoney
-
+else {
+	score=score-prizeMoney;
+	JOptionPane.showMessageDialog(null, "You are wrong... The correct answer is " + correctAnswer);
+}
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 
 		// Call the updateScore() method
-
+updateScore();
 	}
 
 	public void playJeopardyTheme() {
