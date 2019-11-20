@@ -26,6 +26,7 @@ public class WhackAMole implements MouseListener {
 	public void run() {
 frame = new JFrame();
 panel = new JPanel();
+
 		frame.add(panel);
 		frame.setSize(300,600);
 		frame.setVisible(true);
